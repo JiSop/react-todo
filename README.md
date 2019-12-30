@@ -2,11 +2,11 @@
 
 step by step으로 react-todo-app 만들어 보기
 
-- **react-todo-v1-class**: Class 버전
-- **react-todo-v1-hook**: Hook 버전
-- **react-todo-v2-class**: Class 컨포넌트 분리
-- **react-todo-v2-hook**: Hook 컴포넌트 분리
-- **react-todo-v3-hook-context**: contextAPI 적용, 최적화 작업
+- [**react-todo-v1-class**](https://github.com/JiSop/react-todo/tree/version/react-todo-v1-class): Class 버전
+- [**react-todo-v1-hook**](https://github.com/JiSop/react-todo/tree/version/react-todo-v1-hook): Hook 버전
+- [**react-todo-v2-class**](https://github.com/JiSop/react-todo/tree/version/react-todo-v2-class): Class 컨포넌트 분리
+- [**react-todo-v2-hook**](https://github.com/JiSop/react-todo/tree/version/react-todo-v2-hook): Hook 컴포넌트 분리
+- [**react-todo-v3-hook-context**](https://github.com/JiSop/react-todo/tree/version/react-todo-v3-hook-context): contextAPI 적용, 최적화 작업
 
 
 
