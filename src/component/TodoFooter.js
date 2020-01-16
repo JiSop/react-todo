@@ -1,19 +1,7 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import Checkbox from "./Checkbox";
-import TodosContext from "../context/TodosContext";
 
-const TodoFooter = () => {
-  const { state, action } = useContext( TodosContext );
-  const { setTodos } = action;
-  const { todos } = state;
-
-  const chkAllCompletedTodos = useCallback(checked => {
-    setTodos( todos => todos.map( todo => ( { ...todo, completed: checked } ) ) );
-  }, [ setTodos ]);
-
-  const removeCompletedTodos = useCallback( () => {
-    setTodos( todos => todos.filter( todo => todo.completed === false ) );
-  }, [ setTodos ] );
+const TodoFooter = ( { todos, onToggleAll, onRemoveCompleted } ) => {
 
   const getActiveTodos = useCallback( () => {
     return todos.filter( todo => todo.completed !== true ).length;
@@ -23,21 +11,17 @@ const TodoFooter = () => {
     return todos.filter( todo => todo.completed === true ).length;
   }, [ todos ] );
 
-  // const genCompletedTodos = useCallback( () => {
-  //   return state.todos.length - getActiveTodos().length;
-  // }, [ state.todos.length, getActiveTodos ] );
-
   return (
     <div className="footer">
       <div className="complete-all">
         <Checkbox
           id="ck-complete-all"
-          onChange={ e => chkAllCompletedTodos( e.target.checked ) }
+          onChange={ e => onToggleAll( e.target.checked ) }
         />
         <label htmlFor="ck-complete-all">Mark all as complete</label>
       </div>
       <div className="clear-completed">
-        <button className="btn" onClick={ removeCompletedTodos }>
+        <button className="btn" onClick={ onRemoveCompleted }>
           Clear completed (
           <span className="completed-todos">
             { genCompletedTodos() }

@@ -1,49 +1,23 @@
-import React, { useState, useContext, useCallback, useRef } from 'react';
-import TodosContext from "../context/TodosContext";
+import React from 'react';
 
-const TodoInput = () => {
-  const [ inputValue, setInputValue ] = useState( '' );
-  const { action } = useContext( TodosContext );
-  const { setTodos } = action;
-  const nextId = useRef(0);
+const TodoInput = ( { input, onChangeInput, onInsert } ) => {
 
-  // const genId = useCallback( () => {
-  //   return state.todos.length ? Math.max( ...state.todos.map( todo => todo.id ) ) + 1 : 1;
-  // }, [ state.todos ] );
-
-  const onChangeInput = useCallback( e => {
-    setInputValue( e.target.value );
-  }, [] );
-
-  const onInsert = useCallback( content => {
-    const todo = {
-      id: nextId.current,
-      content,
-      completed: false
-    };
-    setTodos( todos => todos.concat( todo ) );
-    nextId.current += 1;
-    // action.setTodos( [
-    //   ...state.todos,
-    //   { id: genId(), content: inputValue, completed: false }
-    // ] );
-    }, [ setTodos ]
-  );
-
-  const onSubmitForm = useCallback( e => {
+  const onSubmitForm = e => {
     e.preventDefault();
-    if ( !inputValue.trim() ) return;
-    onInsert( inputValue );
-    setInputValue( '' );
-  }, [ inputValue, onInsert ] );
+    if ( !input.trim() ) return;
+    onInsert( input );
+    onChangeInput( '' );
+  };
+
+  const onChange = e => onChangeInput( e.target.value );
 
   return (
     <form onSubmit={ onSubmitForm }>
       <input
         className="input-todo"
         placeholder="What needs to be done?"
-        value={ inputValue }
-        onChange={ onChangeInput }
+        value={ input }
+        onChange={ onChange }
         autoFocus
       />
     </form>
